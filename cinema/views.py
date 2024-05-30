@@ -48,11 +48,10 @@ class GenreDetail(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
-    
+
     def delete(self, request, pk: int) -> Response:
         self.get_object(pk=pk).delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-    
 
     def patch(self, request, pk: int) -> Response:
         serializer = GenreSerializer(
@@ -63,7 +62,6 @@ class GenreDetail(APIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_200_OK)
-
 
 
 class ActorList(
