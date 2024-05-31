@@ -24,10 +24,7 @@ class GenreList(APIView):
     @staticmethod
     def post(request) -> Response:
         serializer = GenreSerializer(data=request.data)
-        try:
-            serializer.is_valid(raise_exception=True)
-        except ValidationError as e:
-            return Response(e.detail, status=status.HTTP_400_BAD_REQUEST)
+        serializer.is_valid(raise_exception=True)
 
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -45,11 +42,7 @@ class GenreDetail(APIView):
     def put(self, request, pk: int) -> Response:
         instance = self.get_object(pk=pk)
         serializer = GenreSerializer(instance, data=request.data)
-        try:
-            serializer.is_valid(raise_exception=True)
-        except ValidationError as e:
-            return Response(e.detail, status=status.HTTP_400_BAD_REQUEST)
-
+        serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_200_OK)
 
