@@ -28,7 +28,7 @@ class GenreList(APIView):
             serializer.is_valid(raise_exception=True)
         except ValidationError as e:
             return Response(e.detail, status=status.HTTP_400_BAD_REQUEST)
-        
+
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
